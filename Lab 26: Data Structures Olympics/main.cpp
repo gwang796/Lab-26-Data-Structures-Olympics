@@ -21,12 +21,12 @@ const int STRUCTURES = 3;
 const int ROWS = 4, COLS = 3;
 const int LAYER = 2; //for second array that accumulates all times
 const int W1 = 10;
-const int RUNS = 5;
+const int RUNS = 15;
 
 int main() {
     int results[ROWS][COLS][LAYER] = {0};
     //rows : 0 = READ, 1 = SORT, 2 = INSERT, 3 = DELETE
-    //cols : 0 = Operation, 1 = Vector, 2 = List, 3 = Set
+    //cols : 0 = Vector, 1 = List, 2 = Set
     //Layer : 0 = run of that time, 1 = accumulated times
     string cd;
     
@@ -45,7 +45,7 @@ int main() {
                     auto end = chrono::high_resolution_clock::now();
                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
                     results[0][j][0] = duration.count(); //time for that run
-                    results[0][j][1] += results[0][j][0]; //add it to accumalative
+                    results[0][j][1] += results[0][j][0]; //add it to accumalative totals
                     break;
                 }
                 case 1: {  // read into a list
@@ -54,7 +54,7 @@ int main() {
                     auto end = chrono::high_resolution_clock::now();
                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
                     results[0][j][0] = duration.count(); //time for that run
-                    results[0][j][1] += results[0][j][0]; //add it to accumalative
+                    results[0][j][1] += results[0][j][0]; //add it to accumalative totals
                     break;
                 }
                 case 2: {  // read into a set
@@ -63,7 +63,7 @@ int main() {
                     auto end = chrono::high_resolution_clock::now();
                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
                     results[0][j][0] = duration.count(); //time for that run
-                    results[0][j][1] += results[0][j][0]; //add it to accumalative
+                    results[0][j][1] += results[0][j][0]; //add it to accumalative totals
                     break;
                 }
             }
@@ -79,7 +79,7 @@ int main() {
                     auto end = chrono::high_resolution_clock::now();
                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
                     results[1][j][0] = duration.count();
-                    results[1][j][1] += results[1][j][0]; //add it to accumalative
+                    results[1][j][1] += results[1][j][0]; //add it to accumalative totals
                     break;
                 }
                 case 1: {  // sort a list
@@ -87,12 +87,12 @@ int main() {
                     auto end = chrono::high_resolution_clock::now();
                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
                     results[1][j][0] = duration.count();
-                    results[1][j][1] += results[1][j][0]; //add it to accumalative
+                    results[1][j][1] += results[1][j][0]; //add it to accumalative totals
                     break;
                 }
-                case 2: {  // can't sort a set, so set to -1
-                    results[1][j][0] = -1;
-                    results[1][j][1] = results[1][j][0]; //add it to accumalative
+                case 2: {  // can't sort a set, so set to 0 in this case based off sample output
+                    results[1][j][0] = 0;
+                    results[1][j][1] += results[1][j][0]; //add it to accumalative totals
                     break;
                 }
             }
@@ -109,7 +109,7 @@ int main() {
                     auto end = chrono::high_resolution_clock::now();
                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
                     results[2][j][0] = duration.count();
-                    results[2][j][1] += results[2][j][0]; //add it to accumalative
+                    results[2][j][1] += results[2][j][0]; //add it to accumalative totals
                     break;
                 }
                 case 1: {  // insert into a list
@@ -119,7 +119,7 @@ int main() {
                     auto end = chrono::high_resolution_clock::now();
                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
                     results[2][j][0] = duration.count();
-                    results[2][j][1] += results[2][j][0]; //add it to accumalative
+                    results[2][j][1] += results[2][j][0]; //add it to accumalative totals
                     break;
                 }
                 case 2: {  // insert into a set
@@ -127,7 +127,7 @@ int main() {
                     auto end = chrono::high_resolution_clock::now();
                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
                     results[2][j][0] = duration.count();
-                    results[2][j][1] += results[2][j][0]; //add it to accumalative
+                    results[2][j][1] += results[2][j][0]; //add it to accumalative totals
                     break;
                 }
             }
@@ -156,7 +156,7 @@ int main() {
                     auto end = chrono::high_resolution_clock::now();
                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
                     results[3][j][0] = duration.count();
-                    results[3][j][1] += results[3][j][0]; //add it to accumalative
+                    results[3][j][1] += results[3][j][0]; //add it to accumalative totals
                     break;
                 }
                 case 1: {  // delete by value from list
@@ -164,7 +164,7 @@ int main() {
                     auto end = chrono::high_resolution_clock::now();
                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
                     results[3][j][0] = duration.count();
-                    results[3][j][1] += results[3][j][0]; //add it to accumalative
+                    results[3][j][1] += results[3][j][0]; //add it to accumalative totals
                     break;
                 }
                 case 2: {  // delete by value from set
@@ -172,7 +172,7 @@ int main() {
                     auto end = chrono::high_resolution_clock::now();
                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
                     results[3][j][0] = duration.count();
-                    results[3][j][1] += results[3][j][0]; //add it to accumalative
+                    results[3][j][1] += results[3][j][0]; //add it to accumalative totals
                     break;
                 }
             }
@@ -181,7 +181,7 @@ int main() {
     }
 
     string labels[] = {"Read", "Sort", "Insert", "Delete"};
-    cout << "Total number of Runs: " << RUNS << endl;
+    cout << "Number of Simulations: " << RUNS << endl;
     cout << setw(W1) << "Operation" << setw(W1) << "Vector" << setw(W1) << "List"
          << setw(W1) << "Set" << endl;
     for (int i = 0; i < ROWS; i++) {
