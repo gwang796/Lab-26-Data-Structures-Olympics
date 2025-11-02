@@ -45,7 +45,8 @@ int main() {
                             data_vector.push_back(cd);
                     auto end = chrono::high_resolution_clock::now();
                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
-                    results[0][j][0] = duration.count();
+                    results[0][j][0] = duration.count(); //time for that run
+                    results[0][j][1] += results[0][j][0]; //add it to accumalative
                     break;
                 }
                 case 1: {  // read into a list
@@ -53,7 +54,8 @@ int main() {
                             data_list.push_back(cd);
                     auto end = chrono::high_resolution_clock::now();
                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
-                    results[0][j][0] = duration.count();
+                    results[0][j][0] = duration.count(); //time for that run
+                    results[0][j][1] += results[0][j][0]; //add it to accumalative
                     break;
                 }
                 case 2: {  // read into a set
@@ -61,7 +63,8 @@ int main() {
                             data_set.insert(cd);
                     auto end = chrono::high_resolution_clock::now();
                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
-                    results[0][j][0] = duration.count();
+                    results[0][j][0] = duration.count(); //time for that run
+                    results[0][j][1] += results[0][j][0]; //add it to accumalative
                     break;
                 }
             }
@@ -77,6 +80,7 @@ int main() {
                     auto end = chrono::high_resolution_clock::now();
                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
                     results[1][j][0] = duration.count();
+                    results[1][j][1] += results[1][j][0]; //add it to accumalative
                     break;
                 }
                 case 1: {  // sort a list
@@ -84,6 +88,7 @@ int main() {
                     auto end = chrono::high_resolution_clock::now();
                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
                     results[1][j][0] = duration.count();
+                    results[1][j][1] += results[1][j][0]; //add it to accumalative
                     break;
                 }
                 case 2: {  // can't sort a set, so set to -1
