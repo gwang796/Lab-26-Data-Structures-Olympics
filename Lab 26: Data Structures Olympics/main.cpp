@@ -19,10 +19,14 @@ using namespace std;
 // const int SZ = 20000, COLS = 3, ROWS = 4, TESTS = 4;
 const int STRUCTURES = 3;
 const int ROWS = 4, COLS = 3;
+const int LAYER = 2; //for second array that accumulates all times
 const int W1 = 10;
 
 int main() {
-    int results[ROWS][COLS];
+    int results[ROWS][COLS][LAYER];
+    //rows : 0 = READ, 1 = SORT, 2 = INSERT, 3 = DELETE
+    //cols : 0 = Operation, 1 = Vector, 2 = List, 3 = Set
+    //Layer : 0 = run of that time, 1 = accumulated times
     string cd;
     vector<string> data_vector;
     list<string> data_list;
